@@ -1,2 +1,2 @@
-# refactored-waffle
+# Refactored Waffle
 Refactored Waffle
