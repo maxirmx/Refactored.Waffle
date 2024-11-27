@@ -22,21 +22,9 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-using Refactored.Waffle.Scheduler.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Quartz;
+namespace Refactored.Waffle.ExcelWriter.Services;
 
-namespace Refactored.Waffle.Scheduler;
-
-public static class SchedulerBootstrapper
+public interface IExcelWriterService
 {
-    public static IServiceCollection AddJobs(this IServiceCollection services)
-    {
-        services
-            .AddQuartz()
-            .AddSingleton<ISchedulerFactoryService, SchedulerFactoryService>()
-            .AddSingleton<IJobService, JobService>();
-
-        return services;
-    }
+    void CreateExcel<TData>(IReadOnlyList<TData> data, string filePath, string sheetName = "Sheet1");
 }

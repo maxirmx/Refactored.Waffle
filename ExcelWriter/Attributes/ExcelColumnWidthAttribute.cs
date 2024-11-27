@@ -22,21 +22,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-using Refactored.Waffle.Scheduler.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Quartz;
-
-namespace Refactored.Waffle.Scheduler;
-
-public static class SchedulerBootstrapper
+namespace Refactored.Waffle.ExcelWriter.Attributes
 {
-    public static IServiceCollection AddJobs(this IServiceCollection services)
+    [AttributeUsage(AttributeTargets.Property)]
+    public class ExcelColumnWidthAttribute(double width) : Attribute
     {
-        services
-            .AddQuartz()
-            .AddSingleton<ISchedulerFactoryService, SchedulerFactoryService>()
-            .AddSingleton<IJobService, JobService>();
-
-        return services;
+        public double Width { get; set; } = width;
     }
 }
